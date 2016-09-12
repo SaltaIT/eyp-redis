@@ -2,7 +2,7 @@
   "name": "eyp-redis",
   "version": "0.1.0",
   "author": "eyp",
-  "summary": null,
+  "summary": "multi instance redis",
   "license": "Apache-2.0",
   "source": "https://github.com/NTTCom-MS/eyp-redis",
   "project_page": null,
