@@ -1,17 +1,35 @@
-class redis::params() {
+class redis::params {
 
-	case $::osfamily
-	{
+  case $::osfamily
+  {
     'redhat':
     {
       case $::operatingsystemrelease
       {
-        /^[6].*$/:
+        /^[5-7].*$/:
         {
         }
-        default: { fail("Unsupported RHEL/CentOS version! - $::operatingsystemrelease")  }
+        default: { fail("Unsupported RHEL/CentOS version! - ${::operatingsystemrelease}")  }
       }
     }
-		default: { fail('Unsupported OS!')  }
-	}
+    'Debian':
+    {
+      case $::operatingsystem
+      {
+        'Ubuntu':
+        {
+          case $::operatingsystemrelease
+          {
+            /^14.*$/:
+            {
+            }
+            default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
+          }
+        }
+        'Debian': { fail('Unsupported')  }
+        default: { fail('Unsupported Debian flavour!')  }
+      }
+    }
+    default: { fail('Unsupported OS!')  }
+  }
 }
