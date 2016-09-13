@@ -10,11 +10,18 @@ describe 'redis class' do
 
       class { 'redis': }
 
+      redis::instance { '6666':
+      }
+
       EOF
 
       # Run it twice and test for idempotency
       expect(apply_manifest(pp).exit_code).to_not eq(1)
       expect(apply_manifest(pp).exit_code).to eq(0)
+    end
+
+    describe port(6666) do
+      it { is_expected.to be_listening }
     end
 
   end
