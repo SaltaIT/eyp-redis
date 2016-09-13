@@ -15,7 +15,8 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/redis-server
 DAEMON_ARGS=/etc/redis/redis-<%= @name %>.conf
-NAME=redis-<%= @name %>
+NAME=redis-server
+DISPLAYNAME=redis-<%= @name %>
 DESC=redis-<%= @name %>
 
 RUNDIR=/var/run/redis
@@ -50,7 +51,7 @@ case "$1" in
 
 	if start-stop-daemon --start --quiet --umask 007 --pidfile $PIDFILE --chuid $REDISUSER:$REDISGROUP --exec $DAEMON -- $DAEMON_ARGS
 	then
-		echo "$NAME."
+		echo "$DISPLAYNAME."
 	else
 		echo "failed"
 	fi
@@ -59,7 +60,7 @@ case "$1" in
 	echo -n "Stopping $DESC: "
 	if start-stop-daemon --stop --retry forever/TERM/1 --quiet --oknodo --pidfile $PIDFILE --exec $DAEMON
 	then
-		echo "$NAME."
+		echo "$DISPLAYNAME."
 	else
 		echo "failed"
 	fi
