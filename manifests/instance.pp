@@ -11,6 +11,10 @@ define redis::instance(
                         $redis_group           = $redis::params::default_redis_group,
                       ) {
 
+  Exec {
+    path => '/usr/sbin:/usr/bin:/sbin:/bin',
+  }
+
   #dir /var/lib/redis-<%= @name %>
   exec { "redis datadir ${datadir}":
     command => "mkdir -p ${datadir}",
