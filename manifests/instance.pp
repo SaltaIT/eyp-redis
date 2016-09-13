@@ -35,6 +35,7 @@ define redis::instance(
     group   => 'root',
     mode    => '0644',
     require => File['/etc/redis'],
+    notify  => Service["redis-${name}"],
     content => template("${module_name}/redisconf.erb"),
   }
 
