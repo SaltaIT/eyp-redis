@@ -1,11 +1,14 @@
 class redis::params {
 
   $servicename='redis'
+  $default_redis_user='redis'
+  $default_redis_group='redis'
 
   case $::osfamily
   {
     'redhat':
     {
+      $os_flavor='RH'
       case $::operatingsystemrelease
       {
         /^[5-6].*$/:
@@ -21,6 +24,7 @@ class redis::params {
     }
     'Debian':
     {
+      $os_flavor='Debian'
       case $::operatingsystem
       {
         'Ubuntu':
