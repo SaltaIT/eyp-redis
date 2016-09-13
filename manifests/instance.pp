@@ -50,8 +50,8 @@ define redis::instance(
       before    => Service["redis-${name}"],
       forking   => true,
       restart   => 'no',
-      user      => 'tomcat',
-      group     => 'tomcat',
+      user      => $redis_user,
+      group     => $redis_group,
     }
   }
   else

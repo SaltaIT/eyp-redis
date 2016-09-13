@@ -14,10 +14,12 @@ class redis::params {
         /^[5-6].*$/:
         {
           $systemd=false
+          $redisserver_bin='/usr/sbin/redis-server'
         }
         /^7.*$/:
         {
           $systemd=true
+          $redisserver_bin='/usr/bin/redis-server'
         }
         default: { fail("Unsupported RHEL/CentOS version! - ${::operatingsystemrelease}")  }
       }
@@ -34,6 +36,7 @@ class redis::params {
             /^14.*$/:
             {
               $systemd=false
+              $redisserver_bin='/usr/bin/redis-server'
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
           }
