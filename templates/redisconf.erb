@@ -1,0 +1,31 @@
+# puppet managed file
+
+daemonize yes
+pidfile /var/run/redis/redis-<%= @name %>.pid
+
+
+bind <%= @bind %>
+port <%= @port %>
+
+timeout <%= @timeout %>
+loglevel notice
+logfile /var/log/redis/redis-<%= @name %>.log
+
+
+databases 16
+save 900 1
+save 300 10
+save 60 10000
+rdbcompression yes
+dbfilename dump.rdb
+dir /var/lib/redis-<%= @name %>
+slave-serve-stale-data yes
+appendonly no
+appendfsync everysec
+no-appendfsync-on-rewrite no
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+slowlog-log-slower-than 10000
+slowlog-max-len 1024
+
+activerehashing yes
