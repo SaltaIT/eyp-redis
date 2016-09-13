@@ -1,5 +1,7 @@
 define redis::instance(
                         $port                  = $name,
+                        $bind                  = '0.0.0.0',
+                        $timeout               = '0',
                         $ensure                = 'running',
                         $manage_service        = true,
                         $manage_docker_service = true,
@@ -7,6 +9,8 @@ define redis::instance(
                         $redis_user            = $redis::params::default_redis_user,
                         $redis_group           = $redis::params::default_redis_group,
                       ) {
+
+  #dir /var/lib/redis-<%= @name %>
 
   file { "/etc/redis/redis-${name}.conf":
     ensure  => 'present',
