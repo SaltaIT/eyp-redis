@@ -43,13 +43,20 @@ define redis::instance(
   {
     include systemd
 
+    file { '/usr/bin/redis-shutdown':
+      ensure  => 'present',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      before  => Service["redis-${name}"],
+      content => template("${module_name}/initscripts/RH/shutdownredis.erb"),
+    }
+
     systemd::service { "redis-${name}":
-      execstart => "/etc/init.d/${instancename} start",
-      execstop  => "/etc/init.d/${instancename} stop",
-      require   => File["/etc/init.d/${instancename}"],
+      execstart => "${redis::params::redisserver_bin} /etc/redis/redis-${name}.conf --daemonize no",
+      execstop  => "/usr/bin/redis-shutdown redis-${name}",
       before    => Service["redis-${name}"],
-      forking   => true,
-      restart   => 'no',
+      forking   => false,
       user      => $redis_user,
       group     => $redis_group,
     }
