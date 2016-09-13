@@ -2,6 +2,7 @@ define redis::instance(
                         $port                  = $name,
                         $bind                  = '0.0.0.0',
                         $timeout               = '0',
+                        $datadir               = "/var/lib/redis-${name}",
                         $ensure                = 'running',
                         $manage_service        = true,
                         $manage_docker_service = true,
@@ -11,6 +12,18 @@ define redis::instance(
                       ) {
 
   #dir /var/lib/redis-<%= @name %>
+  exec { "redis datadir ${datadir}":
+    command => "mkdir -p ${datadir}",
+    creates => $datadir,
+  }
+
+  file { $datadir:
+    ensure  => 'directory',
+    owner   => $redis_user,
+    group   => $redis_group,
+    mode    => '0755',
+    require => [ File["/etc/redis/redis-${name}.conf"], Exec["redis datadir ${datadir}"] ],
+  }
 
   file { "/etc/redis/redis-${name}.conf":
     ensure  => 'present',
