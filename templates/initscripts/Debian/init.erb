@@ -19,7 +19,7 @@ NAME=redis-<%= @name %>
 DESC=redis-<%= @name %>
 
 RUNDIR=/var/run/redis
-PIDFILE=$RUNDIR/redis-server.pid
+PIDFILE=$RUNDIR/redis-<%= @name %>.pid
 
 REDISUSER=<%= @redis_user %>
 REDISGROUP=<%= @redis_group %>
