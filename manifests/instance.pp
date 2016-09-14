@@ -82,8 +82,8 @@ define redis::instance(
     if($manage_service)
     {
       service { "redis-${name}":
-        ensure  => $ensure,
-        enable  => $enable,
+        ensure => $ensure,
+        enable => $enable,
       }
     }
   }

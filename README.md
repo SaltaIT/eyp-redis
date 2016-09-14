@@ -17,52 +17,102 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+multi instance redis
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+This module manages redis instances.
 
 ## Setup
 
 ### What redis affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+* manages redis package
+* disables default redis service, on CentOS 7 also masks the systemd service
+* manages as many services as redis instances
 
 ### Setup Requirements
 
-This module requires pluginsync enabled
+* This module requires **pluginsync enabled**.
+* **eyp/systemd** is required, but it's only used on **CentOS 7**
+* on RH based systems **eyp-epel** is required
 
 ### Beginning with redis
 
-**warning**: centos 7, stopped = mask
+```puppet
+class { 'redis': }
+
+redis::instance { '6666':
+}
+```
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+class redis, by default, installs redis and disables the default redis service:
+
+```puppet
+class { 'redis': }
+```
+
+using redis::instance you can create as many instances as needed on a sigle host:
+
+```puppet
+redis::instance { '6666':
+}
+
+redis::instance { '6667':
+}
+```
+
+also:
+
+```puppet
+redis::instance { 'instance_A':
+  port => '6666',
+}
+
+redis::instance { 'instance_B':
+  port => '6667',
+}
+```
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+### classes
+
+#### redis
+
+* **manage_package**:        = true,
+* **package_ensure**:        = 'installed',
+* **manage_service**:        = true,
+* **manage_docker_service**: = true,
+* **service_ensure**:        = 'stopped',
+* **service_enable**:        = false,
+
+### defines
+
+#### redis::instance
+
+* redis related variables:
+  * **port**: port to listen to (default: resource's name)
+  * **bind**: bind address (default: 0.0.0.0)
+  * **timeout**: (default: 0)
+  * **datadir**: redis datadir (default: /var/lib/redis-${name})
+  * **redis_user**: redis username (default: redis)
+  * **redis_group**: redis group (default: redis)
+* package and service related variables:
+  * **ensure**:                = 'running',
+  * **manage_service**:        = true,
+  * **manage_docker_service**: = true,
+  * **enable**:                = true,
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+Tested on:
+* CentOS 5
+* CentOS 6
+* CentOS 7
+* Ubuntu 14.04
 
 ## Development
 
