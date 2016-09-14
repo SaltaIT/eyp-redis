@@ -3,5 +3,6 @@ fixtures:
     stdlib: "git://github.com/puppetlabs/puppetlabs-stdlib.git"
     eyplib: "git://github.com/NTTCom-MS/eyp-eyplib.git"
     systemd: "git://github.com/NTTCom-MS/eyp-systemd.git"
+    epel: "git://github.com/jordiprats/eyp-epel.git"
   symlinks:
     redis: "#{source_dir}"
