@@ -33,10 +33,9 @@ management, etc.) this is the time to mention it.
 
 ### What redis affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+* manages redis package
+* disables default redis service, on centos 7 also masks the systemd service
+* manages as many services as redis instances
 
 ### Setup Requirements
 
@@ -44,7 +43,12 @@ This module requires pluginsync enabled
 
 ### Beginning with redis
 
-**warning**: centos 7, stopped = mask
+```puppet
+class { 'redis': }
+
+redis::instance { '6666':
+}
+```
 
 ## Usage
 
