@@ -31,7 +31,7 @@ class redis::params {
       $servicename='redis-server'
       $os_flavor='Debian'
       $package_name=[ 'redis-server', 'redis-tools' ]
-      
+
       case $::operatingsystem
       {
         'Ubuntu':
