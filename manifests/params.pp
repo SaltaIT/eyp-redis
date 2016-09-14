@@ -9,6 +9,8 @@ class redis::params {
     {
       $servicename='redis'
       $os_flavor='RH'
+      $package_name=[ 'redis' ]
+
       case $::operatingsystemrelease
       {
         /^[5-6].*$/:
@@ -28,6 +30,8 @@ class redis::params {
     {
       $servicename='redis-server'
       $os_flavor='Debian'
+      $package_name=[ 'redis-server', 'redis-tools' ]
+      
       case $::operatingsystem
       {
         'Ubuntu':
