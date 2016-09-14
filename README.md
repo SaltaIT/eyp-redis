@@ -35,6 +35,7 @@ This module manages redis instances.
 
 * This module requires **pluginsync enabled**.
 * **eyp/systemd** is required, but it's only used on **CentOS 7**
+* on RH based systems **eyp-epel** is required
 
 ### Beginning with redis
 
