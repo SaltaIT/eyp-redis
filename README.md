@@ -28,7 +28,7 @@ This module manages redis instances.
 ### What redis affects
 
 * manages redis package
-* disables default redis service, on centos 7 also masks the systemd service
+* disables default redis service, on CentOS 7 also masks the systemd service
 * manages as many services as redis instances
 
 ### Setup Requirements
