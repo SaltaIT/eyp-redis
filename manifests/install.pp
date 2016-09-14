@@ -15,7 +15,7 @@ class redis::install inherits redis {
   {
     # package here, for example:
     package { $redis::params::package_name:
-     ensure => $redis::package_ensure,
+      ensure => $redis::package_ensure,
     }
   }
 
