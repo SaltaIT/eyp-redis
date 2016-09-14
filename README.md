@@ -28,8 +28,8 @@ This module manages redis instances.
 ### What redis affects
 
 * manages redis package
-* disables default redis service, on CentOS 7 also masks the systemd service
-* manages as many services as redis instances
+* disables default redis service, on CentOS 7 also masks it
+* creates as many services as redis instances
 
 ### Setup Requirements
 
@@ -48,13 +48,13 @@ redis::instance { '6666':
 
 ## Usage
 
-class redis, by default, installs redis and disables the default redis service:
+class **redis**, by default, installs redis and disables the default redis service:
 
 ```puppet
 class { 'redis': }
 ```
 
-using redis::instance you can create as many instances as needed on a sigle host:
+using **redis::instance** you can create as many instances as needed on a sigle host:
 
 ```puppet
 redis::instance { '6666':
