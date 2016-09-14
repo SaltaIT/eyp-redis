@@ -67,16 +67,18 @@ the fancy stuff with your module here.
 
 #### redis::instance
 
-* **port**:                  = $name,
-* **bind**:                  = '0.0.0.0',
-* **timeout**:               = '0',
-* **datadir**:               = "/var/lib/redis-${name}",
-* **ensure**:                = 'running',
-* **manage_service**:        = true,
-* **manage_docker_service**: = true,
-* **enable**:                = true,
-* **redis_user**:            = $redis::params::default_redis_user,
-* **redis_group**:           = $redis::params::default_redis_group,
+* redis related variables:
+  * **port**: port to listen to (default: resource's name)
+  * **bind**: bind address (default: 0.0.0.0)
+  * **timeout**: (default: 0)
+  * **datadir**: redis datadir (default: /var/lib/redis-${name})
+  * **redis_user**: redis username (default: redis)
+  * **redis_group**: redis group (default: redis)
+* package and service related variables:
+  * **ensure**:                = 'running',
+  * **manage_service**:        = true,
+  * **manage_docker_service**: = true,
+  * **enable**:                = true,
 
 ## Limitations
 
