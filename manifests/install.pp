@@ -11,7 +11,7 @@ class redis::install inherits redis {
     mode   => '0755',
   }
 
-  if($os_flavor=='RH')
+  if($redis::params::os_flavor=='RH')
   {
     include ::epel
 
