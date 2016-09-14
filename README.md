@@ -47,8 +47,33 @@ redis::instance { '6666':
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+class redis, by default, installs redis and disables the default redis service:
+
+```puppet
+class { 'redis': }
+```
+
+using redis::instance you can create as many instances as needed on a sigle host:
+
+```puppet
+redis::instance { '6666':
+}
+
+redis::instance { '6667':
+}
+```
+
+also:
+
+```puppet
+redis::instance { 'instance_A':
+  port => '6666',
+}
+
+redis::instance { 'instance_B':
+  port => '6667',
+}
+```
 
 ## Reference
 
