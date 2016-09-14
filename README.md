@@ -21,13 +21,7 @@ multi instance redis
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+This module manages redis instances.
 
 ## Setup
 
@@ -39,7 +33,8 @@ management, etc.) this is the time to mention it.
 
 ### Setup Requirements
 
-This module requires pluginsync enabled
+* This module requires **pluginsync enabled**.
+* **eyp/systemd** is required, but it's only used on **CentOS 7**
 
 ### Beginning with redis
 
@@ -57,14 +52,39 @@ the fancy stuff with your module here.
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+### classes
+
+#### redis
+
+* **manage_package**:        = true,
+* **package_ensure**:        = 'installed',
+* **manage_service**:        = true,
+* **manage_docker_service**: = true,
+* **service_ensure**:        = 'stopped',
+* **service_enable**:        = false,
+
+### defines
+
+#### redis::instance
+
+* **port**:                  = $name,
+* **bind**:                  = '0.0.0.0',
+* **timeout**:               = '0',
+* **datadir**:               = "/var/lib/redis-${name}",
+* **ensure**:                = 'running',
+* **manage_service**:        = true,
+* **manage_docker_service**: = true,
+* **enable**:                = true,
+* **redis_user**:            = $redis::params::default_redis_user,
+* **redis_group**:           = $redis::params::default_redis_group,
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+Tested on:
+* CentOS 5
+* CentOS 6
+* CentOS 7
+* Ubuntu 14.04
 
 ## Development
 
