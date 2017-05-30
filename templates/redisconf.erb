@@ -6,6 +6,8 @@ pidfile /var/run/redis/redis-<%= @name %>.pid
 <% if @listen_tcp -%>
 bind <%= @bind %>
 port <%= @port %>
+<% else -%>
+port 0
 <% end -%>
 
 <% if defined?(@unixsocket) -%>
