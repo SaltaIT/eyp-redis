@@ -11,6 +11,7 @@ define redis::instance(
                         $redis_group           = $redis::params::default_redis_group,
                         $unixsocket            = undef,
                         $unixsocketperm        = '700',
+                        $listen_tcp            = true,
                       ) {
 
   Exec {

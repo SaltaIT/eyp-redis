@@ -2,7 +2,7 @@
 
 ## 0.1.1
 
-* added unixsocket and unixsocketperm to **redis::instance**
+* added unixsocket, unixsocketperm and listen_tcp to **redis::instance**
 
 ## 0.1.0
 
