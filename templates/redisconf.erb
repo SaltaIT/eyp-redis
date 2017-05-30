@@ -3,9 +3,13 @@
 daemonize yes
 pidfile /var/run/redis/redis-<%= @name %>.pid
 
-
 bind <%= @bind %>
 port <%= @port %>
+
+<% if defined?(@unixsocket) -%>
+unixsocket <%= @unixsocket %>
+unixsocketperm <%= @unixsocketperm %>
+<% end -%>
 
 timeout <%= @timeout %>
 loglevel notice

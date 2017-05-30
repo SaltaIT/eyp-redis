@@ -9,6 +9,8 @@ define redis::instance(
                         $enable                = true,
                         $redis_user            = $redis::params::default_redis_user,
                         $redis_group           = $redis::params::default_redis_group,
+                        $unixsocket            = undef,
+                        $unixsocketperm        = '700',
                       ) {
 
   Exec {
