@@ -1,15 +1,23 @@
 # puppet managed file
 
 daemonize yes
-pidfile /var/run/redis/redis-<%= @name %>.pid
+pidfile /var/run/redis/redis-<%= @redis_instancename %>.pid
 
-
+<% if @listen_tcp -%>
 bind <%= @bind %>
 port <%= @port %>
+<% else -%>
+port 0
+<% end -%>
+
+<% if defined?(@unixsocket) -%>
+unixsocket <%= @unixsocket %>
+unixsocketperm <%= @unixsocketperm %>
+<% end -%>
 
 timeout <%= @timeout %>
 loglevel notice
-logfile /var/log/redis/redis-<%= @name %>.log
+logfile /var/log/redis/redis-<%= @redis_instancename %>.log
 
 
 databases 16
@@ -18,7 +26,7 @@ save 300 10
 save 60 10000
 rdbcompression yes
 dbfilename dump.rdb
-dir /var/lib/redis-<%= @name %>
+dir /var/lib/redis-<%= @redis_instancename %>
 slave-serve-stale-data yes
 appendonly no
 appendfsync everysec

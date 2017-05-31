@@ -1,6 +1,6 @@
 {
   "name": "eyp-redis",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "eyp",
   "summary": "multi instance redis",
   "license": "Apache-2.0",
@@ -39,10 +39,6 @@
     }
   ],
   "requirements": [
-    {
-      "name": "pe",
-      "version_requirement": ">= 3.0.0"
-    },
     {
       "name": "puppet",
       "version_requirement": ">= 3.0.0"
