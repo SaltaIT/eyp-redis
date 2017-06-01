@@ -59,6 +59,7 @@ define redis::instance(
     systemd::service { "redis-${redis_instancename}":
       execstart              => "${redis::params::redisserver_bin} /etc/redis/redis-${redis_instancename}.conf",
       execstop               => "/usr/bin/redis-shutdown redis-${redis_instancename}",
+      type                   => 'forking',
       before                 => Service["redis-${redis_instancename}"],
       pid_file               => "/var/run/redis-${redis_instancename}/redis.pid",
       user                   => $redis_user,
