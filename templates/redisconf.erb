@@ -1,7 +1,7 @@
 # puppet managed file
 
 daemonize yes
-pidfile /var/run/redis/redis-<%= @redis_instancename %>.pid
+pidfile /var/run/redis-<%= @redis_instancename %>/redis.pid
 
 <% if @listen_tcp -%>
 bind <%= @bind %>
