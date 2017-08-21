@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.4
+
+* added **daemonize** option to **redis::instance**
+
 ## 0.1.3
 
 * Ubuntu 16.04 support

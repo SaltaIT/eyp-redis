@@ -1,6 +1,6 @@
 # puppet managed file
 
-daemonize yes
+daemonize <%= scope.function_bool2yesno([@daemonize]) %>
 pidfile /var/run/redis-<%= @redis_instancename %>/redis.pid
 
 
