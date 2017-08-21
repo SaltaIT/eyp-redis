@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.5
+
+* bugfix **redis::instance** service notifications with **daemonize** set to false
+
 ## 0.1.4
 
 * added **daemonize** option to **redis::instance**

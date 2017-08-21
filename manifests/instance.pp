@@ -41,9 +41,9 @@ define redis::instance(
     group   => 'root',
     mode    => '0644',
     require => File['/etc/redis'],
-    notify  => Service["redis-${redis_instancename}"],
     content => template("${module_name}/redisconf.erb"),
   }
+  # notify  => Service["redis-${redis_instancename}"],
 
   if($daemonize)
   {
@@ -93,11 +93,12 @@ define redis::instance(
       if($manage_service)
       {
         service { "redis-${name}":
-          ensure => $ensure,
-          enable => $enable,
+          ensure    => $ensure,
+          enable    => $enable,
+          subscribe => File["/etc/redis/redis-${redis_instancename}.conf"],
         }
       }
-    }  
+    }
   }
 
 }
