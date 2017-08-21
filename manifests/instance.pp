@@ -13,6 +13,7 @@ define redis::instance(
                         $unixsocket            = undef,
                         $unixsocketperm        = '700',
                         $listen_tcp            = true,
+                        $password              = undef,
                       ) {
 
   Exec {

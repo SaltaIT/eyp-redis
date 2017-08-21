@@ -100,6 +100,7 @@ redis::instance { 'instance_B':
   * **datadir**: redis datadir (default: /var/lib/redis-${name})
   * **redis_user**: redis username (default: redis)
   * **redis_group**: redis group (default: redis)
+  * **password**: optional password for redis (default: undef)
 * package and service related variables:
   * **ensure**:                = 'running',
   * **manage_service**:        = true,

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.2
+
+* added **password** to **redis::instance** to be able to set a global password for redis
+
 ## 0.1.1
 
 * added unixsocket, unixsocketperm and listen_tcp to **redis::instance**

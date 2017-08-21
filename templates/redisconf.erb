@@ -3,11 +3,15 @@
 daemonize yes
 pidfile /var/run/redis-<%= @redis_instancename %>/redis.pid
 
+
 <% if @listen_tcp -%>
 bind <%= @bind %>
 port <%= @port %>
 <% else -%>
 port 0
+<% end -%>
+<% if defined?(@password) -%>
+requirepass "<%= @password %>"
 <% end -%>
 
 <% if defined?(@unixsocket) -%>
