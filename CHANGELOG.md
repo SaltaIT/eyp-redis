@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.3
+
+* Ubuntu 16.04 support
+
 ## 0.1.2
 
 * added **password** to **redis::instance** to be able to set a global password for redis
