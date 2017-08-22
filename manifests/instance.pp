@@ -13,6 +13,8 @@ define redis::instance(
                         $unixsocket            = undef,
                         $unixsocketperm        = '700',
                         $listen_tcp            = true,
+                        $password              = undef,
+                        $daemonize             = true,
                       ) {
 
   Exec {
@@ -39,61 +41,64 @@ define redis::instance(
     group   => 'root',
     mode    => '0644',
     require => File['/etc/redis'],
-    notify  => Service["redis-${redis_instancename}"],
     content => template("${module_name}/redisconf.erb"),
   }
+  # notify  => Service["redis-${redis_instancename}"],
 
-  if($redis::params::systemd)
+  if($daemonize)
   {
-    include systemd
-
-    file { '/usr/bin/redis-shutdown':
-      ensure  => 'present',
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0755',
-      before  => Service["redis-${redis_instancename}"],
-      content => template("${module_name}/initscripts/RH/shutdownredis.erb"),
-    }
-
-    systemd::service { "redis-${redis_instancename}":
-      execstart              => "${redis::params::redisserver_bin} /etc/redis/redis-${redis_instancename}.conf",
-      execstop               => "/usr/bin/redis-shutdown redis-${redis_instancename}",
-      type                   => 'forking',
-      before                 => Service["redis-${redis_instancename}"],
-      pid_file               => "/var/run/redis-${redis_instancename}/redis.pid",
-      user                   => $redis_user,
-      group                  => $redis_group,
-      runtime_directory      => [ "redis-${redis_instancename}" ],
-      runtime_directory_mode => '0755',
-    }
-  }
-  else
-  {
-    file { "/etc/init.d/redis-${name}":
-      ensure  => 'present',
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0755',
-      before  => Service["redis-${redis_instancename}"],
-      content => template("${module_name}/initscripts/${redis::params::os_flavor}/init.erb"),
-    }
-  }
-
-  $is_docker_container_var=getvar('::eyp_docker_iscontainer')
-  $is_docker_container=str2bool($is_docker_container_var)
-
-  if( $is_docker_container==false or
-      $manage_docker_service)
-  {
-    if($manage_service)
+    if($redis::params::systemd)
     {
-      service { "redis-${name}":
-        ensure => $ensure,
-        enable => $enable,
+      include systemd
+
+      file { '/usr/bin/redis-shutdown':
+        ensure  => 'present',
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0755',
+        before  => Service["redis-${redis_instancename}"],
+        content => template("${module_name}/initscripts/RH/shutdownredis.erb"),
+      }
+
+      systemd::service { "redis-${redis_instancename}":
+        execstart              => "${redis::params::redisserver_bin} /etc/redis/redis-${redis_instancename}.conf",
+        execstop               => "/usr/bin/redis-shutdown redis-${redis_instancename}",
+        type                   => 'forking',
+        before                 => Service["redis-${redis_instancename}"],
+        pid_file               => "/var/run/redis-${redis_instancename}/redis.pid",
+        user                   => $redis_user,
+        group                  => $redis_group,
+        runtime_directory      => [ "redis-${redis_instancename}" ],
+        runtime_directory_mode => '0755',
+      }
+    }
+    else
+    {
+      file { "/etc/init.d/redis-${name}":
+        ensure  => 'present',
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0755',
+        before  => Service["redis-${redis_instancename}"],
+        content => template("${module_name}/initscripts/${redis::params::os_flavor}/init.erb"),
+      }
+    }
+
+    $is_docker_container_var=getvar('::eyp_docker_iscontainer')
+    $is_docker_container=str2bool($is_docker_container_var)
+
+    if( $is_docker_container==false or
+        $manage_docker_service)
+    {
+      if($manage_service)
+      {
+        service { "redis-${name}":
+          ensure    => $ensure,
+          enable    => $enable,
+          subscribe => File["/etc/redis/redis-${redis_instancename}.conf"],
+        }
       }
     }
   }
-
 
 }
