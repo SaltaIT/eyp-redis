@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.6
+
+* Updated validate_* functions to validate_legacy - thanks to [jtreminio](https://github.com/jtreminio) for this [PR-13](https://github.com/NTTCom-MS/eyp-redis/pull/13)
+
 ## 0.1.5
 
 * bugfix **redis::instance** service notifications with **daemonize** set to false

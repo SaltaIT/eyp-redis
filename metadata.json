@@ -1,6 +1,6 @@
 {
   "name": "eyp-redis",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "eyp",
   "summary": "multi instance redis",
   "license": "Apache-2.0",
@@ -8,7 +8,7 @@
   "project_page": "https://github.com/NTTCom-MS/eyp-redis",
   "issues_url": "https://github.com/NTTCom-MS/eyp-redis/issues",
   "dependencies": [
-    {"name":"puppetlabs/stdlib", "version_requirement":">= 4.13.0 < 9.9.9"},
+    {"name":"puppetlabs/stdlib", "version_requirement":">= 1.0.0 < 9.9.9"},
     {"name":"eyp/systemd", "version_requirement":">= 0.1.7 < 0.2.0"},
     {"name":"eyp/eyplib", "version_requirement":">= 0.1.0 < 0.2.0"}
   ],
@@ -41,7 +41,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.0.0"
+      "version_requirement": ">= 3.8.0"
     }
   ]
 }
