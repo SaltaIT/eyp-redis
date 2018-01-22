@@ -24,5 +24,9 @@ describe 'redis class' do
       it { is_expected.to be_listening }
     end
 
+    it "puppet --version" do
+      expect(shell("puppet --version").exit_code).to be_zero
+    end
+
   end
 end
