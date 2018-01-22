@@ -4,11 +4,10 @@ class redis::service inherits redis {
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
   }
 
-  validate_bool($redis::manage_docker_service)
-  validate_bool($redis::manage_service)
-  validate_bool($redis::service_enable)
-
-  validate_re($redis::service_ensure, [ '^running$', '^stopped$' ], "Not a valid daemon status: ${redis::service_ensure}")
+  validate_legacy(Boolean, 'validate_bool', $redis::manage_docker_service)
+  validate_legacy(Boolean, 'validate_bool', $redis::manage_service)
+  validate_legacy(Boolean, 'validate_bool', $redis::service_enable)
+  validate_legacy('Optional[String]', 'validate_re', $redis::service_ensure, [ '^running$', '^stopped$' ])
 
   $is_docker_container_var=getvar('::eyp_docker_iscontainer')
   $is_docker_container=str2bool($is_docker_container_var)
