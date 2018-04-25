@@ -15,7 +15,7 @@ class redis::sentinel::service inherits redis::sentinel {
   {
     if($redis::sentinel::manage_service)
     {
-      service { $redis:::params::sentinel_servicename:
+      service { $redis::params::sentinel_servicename:
         ensure => $redis::sentinel::service_ensure,
         enable => $redis::sentinel::service_enable,
       }
