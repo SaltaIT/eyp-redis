@@ -59,13 +59,16 @@ define redis::instance(
     {
       include systemd
 
-      file { '/usr/bin/redis-shutdown':
-        ensure  => 'present',
-        owner   => 'root',
-        group   => 'root',
-        mode    => '0755',
-        before  => Service["redis-${redis_instancename}"],
-        content => template("${module_name}/initscripts/RH/shutdownredis.erb"),
+      if(!defined(File['/usr/bin/redis-shutdown']))
+      {
+        file { '/usr/bin/redis-shutdown':
+          ensure  => 'present',
+          owner   => 'root',
+          group   => 'root',
+          mode    => '0755',
+          before  => Service["redis-${redis_instancename}"],
+          content => template("${module_name}/initscripts/RH/shutdownredis.erb"),
+        }
       }
 
       systemd::service { "redis-${redis_instancename}":
