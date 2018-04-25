@@ -10,9 +10,9 @@ class redis::sentinel(
                           ) inherits redis::params{
 
   Class['::redis'] ->
-  class { '::sentinel::install': } ->
-  class { '::sentinel::config': } ~>
-  class { '::sentinel::service': } ->
+  class { '::redis::sentinel::install': } ->
+  class { '::redis::sentinel::config': } ~>
+  class { '::redis::sentinel::service': } ->
   Class['::redis::sentinel']
 
 }
