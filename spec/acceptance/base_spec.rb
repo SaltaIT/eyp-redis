@@ -34,10 +34,10 @@ describe 'redis class' do
       its(:content) { should match 'port 6666' }
     end
 
-    describe service($servicename) do
-  it { should be_enabled }
-  it { is_expected.to be_running }
-end
+    describe service("redis-6666") do
+      it { should be_enabled }
+      it { is_expected.to be_running }
+    end
 
   end
 end
