@@ -4,4 +4,8 @@ port <%= @port %>
 
 daemonize yes
 
-pidfile /var/run/redis/redis-sentinel.pid
+<% if defined?(@pidfile) -%>
+pidfile <%= @pidfile %>
+<% end -%>
+
+dir /tmp

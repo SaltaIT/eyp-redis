@@ -15,6 +15,8 @@ class redis::params {
       $sentinel_servicename='redis-sentinel'
       $sentinel_config='/etc/redis-sentinel.conf'
 
+      $sentinel_pidfile=undef
+
 
       case $::operatingsystemrelease
       {
@@ -51,6 +53,7 @@ class redis::params {
             /^14.*$/:
             {
               $systemd=false
+              $sentinel_pidfile=undef
             }
             /^16.*$/:
             {
