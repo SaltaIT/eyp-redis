@@ -8,8 +8,6 @@ redis::instance { '1112':
   sentinel => true,
 }
 
-redis::instance { '1113':
-}
+redis::instance { '1113': }
 
-redis::instance { '1114': 
-}
+redis::instance { '1114': }
