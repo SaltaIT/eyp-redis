@@ -1,8 +1,4 @@
 class redis::sentinel::config inherits redis::sentinel {
-  if($redis::params::sentinel_bin==undef)
-  {
-    fail('sentinel not supported')
-  }
 
   concat { $redis::params::sentinel_config:
     ensure  => 'present',
