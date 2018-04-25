@@ -4,7 +4,7 @@ class redis::sentinel::config inherits redis::sentinel {
     fail('sentinel not supported')
   }
 
-  concat { '/etc/redis/sentinel.conf':
+  concat { $redis::params::sentinel_config:
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
@@ -12,7 +12,7 @@ class redis::sentinel::config inherits redis::sentinel {
   }
 
   concat::fragment { 'sentinel base config':
-    target  => '/etc/redis/sentinel.conf',
+    target  => $redis::params::sentinel_config,
     order   => '00',
     content => template("${module_name}/sentinel.erb"),
   }

@@ -2,7 +2,7 @@ class redis::params {
 
   $default_redis_user='redis'
   $default_redis_group='redis'
-  $sentinel_servicename='sentinel'
+
 
   case $::osfamily
   {
@@ -11,8 +11,11 @@ class redis::params {
       $servicename='redis'
       $os_flavor='RH'
       $package_name=[ 'redis' ]
-      $sentinel_bin=undef
+      $sentinel_bin='/usr/bin/redis-sentinel'
       $sentinel_package=undef
+      $sentinel_servicename='redis-sentinel'
+      $sentinel_config='/etc/redis-sentinel.conf'
+
 
       case $::operatingsystemrelease
       {
@@ -37,6 +40,8 @@ class redis::params {
       $redisserver_bin='/usr/bin/redis-server'
       $sentinel_bin='/usr/bin/redis-sentinel'
       $sentinel_package = 'redis-sentinel'
+      $sentinel_servicename='sentinel'
+      $sentinel_config='/etc/redis/sentinel.conf'
 
 
       case $::operatingsystem

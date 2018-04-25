@@ -12,7 +12,7 @@ define redis::sentinel::instance(
   include redis::sentinel
 
   concat::fragment { "sentinel ${instance_name}":
-    target  => '/etc/redis/sentinel.conf',
+    target  => $redis::params::sentinel_config,
     order   => "01-${order}",
     content => template("${module_name}/sentinel_instance.erb"),
   }
