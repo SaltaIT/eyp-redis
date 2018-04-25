@@ -107,6 +107,19 @@ define redis::instance(
         }
       }
     }
-  }
 
+    if($sentinel)
+    {
+      redis::sentinel { "sentinel-${redis_instancename}":
+        instance_name           => $redis_instancename,
+        redis_port              => $port,
+        redis_password          => $password,
+        group_name              => $sentinel_group_name,
+        quorum                  => $sentinel_quorum,
+        down_after_milliseconds => $sentinel_down_after_milliseconds,
+        parallel_syncs          => $sentinel_parallel_syncs,
+        failover_timeout        => $sentinel_failover_timeout,
+      }
+    }
+  }
 }

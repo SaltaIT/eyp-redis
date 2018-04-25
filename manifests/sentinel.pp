@@ -1,4 +1,4 @@
-class sentinel(
+class redis::sentinel(
                             $manage_package        = true,
                             $package_ensure        = 'installed',
                             $manage_service        = true,
@@ -13,6 +13,6 @@ class sentinel(
   class { '::sentinel::install': } ->
   class { '::sentinel::config': } ~>
   class { '::sentinel::service': } ->
-  Class['::sentinel']
+  Class['::redis::sentinel']
 
 }

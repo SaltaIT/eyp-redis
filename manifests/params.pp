@@ -2,6 +2,7 @@ class redis::params {
 
   $default_redis_user='redis'
   $default_redis_group='redis'
+  $sentinel_servicename='sentinel'
 
   case $::osfamily
   {
@@ -36,6 +37,7 @@ class redis::params {
       $redisserver_bin='/usr/bin/redis-server'
       $sentinel_bin='/usr/bin/redis-sentinel'
       $sentinel_package = 'redis-sentinel'
+
 
       case $::operatingsystem
       {

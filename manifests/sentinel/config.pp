@@ -1,4 +1,4 @@
-class sentinel::config inherits sentinel {
+class redis::sentinel::config inherits redis::sentinel {
   if($redis::params::sentinel_bin==undef)
   {
     fail('sentinel not supported')
@@ -17,15 +17,15 @@ class sentinel::config inherits sentinel {
     content => template("${module_name}/sentinel.erb"),
   }
 
-  systemd::service { "sentinel-${redis_instancename}":
-    execstart              => "${redis::params::sentinel_bin} /etc/redis/sentinel-${redis_instancename}.conf",
-    type                   => 'forking',
-    before                 => Service["sentinel-${redis_instancename}"],
-    pid_file               => "/var/run/redis-${redis_instancename}/redis.pid",
-    user                   => $redis_user,
-    group                  => $redis_group,
-    runtime_directory      => [ "redis-${redis_instancename}" ],
-    runtime_directory_mode => '0755',
-  }
+  # systemd::service { "sentinel-${redis_instancename}":
+  #   execstart              => "${redis::params::sentinel_bin} /etc/redis/sentinel-${redis_instancename}.conf",
+  #   type                   => 'forking',
+  #   before                 => Service["sentinel-${redis_instancename}"],
+  #   pid_file               => "/var/run/redis-${redis_instancename}/redis.pid",
+  #   user                   => $redis_user,
+  #   group                  => $redis_group,
+  #   runtime_directory      => [ "redis-${redis_instancename}" ],
+  #   runtime_directory_mode => '0755',
+  # }
 
 }

@@ -1,4 +1,4 @@
-class sentinel::install inherits sentinel {
+class redis::sentinel::install inherits redis::sentinel {
   if($redis::params::sentinel_bin==undef)
   {
     fail('sentinel not supported')
