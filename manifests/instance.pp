@@ -110,7 +110,7 @@ define redis::instance(
 
     if($sentinel)
     {
-      redis::sentinel { "sentinel-${redis_instancename}":
+      redis::sentinel::instance { "sentinel-${redis_instancename}":
         instance_name           => $redis_instancename,
         redis_port              => $port,
         redis_password          => $password,
