@@ -1,4 +1,4 @@
-define sentinel::instance (
+define redis::sentinel::instance (
                             $instance_name           = $name,
                             $redis_port              = $name,
                             $redis_password          = undef,
@@ -10,7 +10,7 @@ define sentinel::instance (
                             $failover_timeout        = '10000',
                           ) {
   include redis::sentinel
-  
+
   concat::fragment { "sentinel ${instance_name}":
     target  => '/etc/redis/sentinel.conf',
     order   => "01-${order}",
