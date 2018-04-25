@@ -30,12 +30,20 @@ describe 'redis class' do
       expect(apply_manifest(pp).exit_code).to eq(0)
     end
 
-    describe port(6666) do
+    describe port(1111) do
       it { is_expected.to be_listening }
     end
 
-    it "puppet --version" do
-      expect(shell("puppet --version").exit_code).to be_zero
+    describe port(1112) do
+      it { is_expected.to be_listening }
+    end
+
+    describe port(1113) do
+      it { is_expected.to be_listening }
+    end
+
+    describe port(1114) do
+      it { is_expected.to be_listening }
     end
 
     describe file("/etc/redis/redis-1111.conf") do
