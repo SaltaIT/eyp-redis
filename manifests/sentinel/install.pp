@@ -2,10 +2,10 @@ class redis::sentinel::install inherits redis::sentinel {
 
   if($redis::params::sentinel_package!=undef)
   {
-    if($sentinel::manage_package)
+    if($redis::sentinel::manage_package)
     {
-      package { $sentinel::params::sentinel_package:
-        ensure => $sentinel::package_ensure,
+      package { $redis::params::sentinel_package:
+        ensure => $redis::sentinel::package_ensure,
       }
     }
   }
