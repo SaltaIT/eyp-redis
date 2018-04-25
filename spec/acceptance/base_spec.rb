@@ -31,7 +31,13 @@ describe 'redis class' do
     describe file("/etc/redis/redis-6666.conf") do
       it { should be_file }
       its(:content) { should match '# puppet managed file' }
+      its(:content) { should match 'port 6666' }
     end
+
+    describe service($servicename) do
+  it { should be_enabled }
+  it { is_expected.to be_running }
+end
 
   end
 end

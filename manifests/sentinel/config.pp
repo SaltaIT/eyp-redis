@@ -2,8 +2,8 @@ class redis::sentinel::config inherits redis::sentinel {
 
   concat { $redis::params::sentinel_config:
     ensure => 'present',
-    owner   => $redis::sentinel::redis_user,
-    group   => $redis::sentinel::redis_group,
+    owner  => $redis::sentinel::redis_user,
+    group  => $redis::sentinel::redis_group,
     mode   => '0644',
   }
 
