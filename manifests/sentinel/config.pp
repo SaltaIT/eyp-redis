@@ -10,7 +10,7 @@ class redis::sentinel::config inherits redis::sentinel {
   concat::fragment { 'sentinel base config':
     target  => $redis::params::sentinel_config,
     order   => '00',
-    content => template("${module_name}/sentinel.erb"),
+    content => template("${module_name}/sentinel_base.erb"),
   }
 
   # systemd::service { "sentinel-${redis_instancename}":
