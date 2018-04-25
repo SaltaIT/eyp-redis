@@ -8,6 +8,8 @@ class redis::sentinel(
                             $bind                  = '127.0.0.1',
                             $port                  = '26379',
                             $pidfile               = $redis::params::sentinel_pidfile,
+                            $redis_user            = $redis::params::default_redis_user,
+                            $redis_group           = $redis::params::default_redis_group,
                           ) inherits redis::params{
 
   Class['::redis'] ->
