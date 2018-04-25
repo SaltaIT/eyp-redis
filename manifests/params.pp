@@ -10,6 +10,8 @@ class redis::params {
       $servicename='redis'
       $os_flavor='RH'
       $package_name=[ 'redis' ]
+      $sentinel_bin=undef
+      $sentinel_package=undef
 
       case $::operatingsystemrelease
       {
@@ -31,6 +33,9 @@ class redis::params {
       $servicename='redis-server'
       $os_flavor='Debian'
       $package_name=[ 'redis-server', 'redis-tools' ]
+      $redisserver_bin='/usr/bin/redis-server'
+      $sentinel_bin='/usr/bin/redis-sentinel'
+      $sentinel_package = 'redis-sentinel'
 
       case $::operatingsystem
       {
@@ -41,12 +46,11 @@ class redis::params {
             /^14.*$/:
             {
               $systemd=false
-              $redisserver_bin='/usr/bin/redis-server'
             }
             /^16.*$/:
             {
               $systemd=true
-              $redisserver_bin='/usr/bin/redis-server'
+              $sentinel_pidfile='/var/run/redis/redis-sentinel.pid'
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
           }

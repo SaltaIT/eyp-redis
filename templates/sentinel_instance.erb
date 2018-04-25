@@ -1,0 +1,9 @@
+
+# <%= @sentinel_group_name %>
+sentinel monitor <%= @sentinel_group_name %> 127.0.0.1 <%= @port %> <%= @sentinel_quorum %>
+<% if defined?(@password) -%>
+sentinel auth-pass <%= @sentinel_group_name %> <%= @password %>
+<% end -%>
+sentinel down-after-milliseconds <%= @sentinel_group_name %> <%= @sentinel_down_after_milliseconds %>
+sentinel parallel-syncs <%= @sentinel_group_name %> <%= @sentinel_parallel_syncs %>
+sentinel failover-timeout <%= @sentinel_group_name %> <%= @sentinel_failover_timeout %>

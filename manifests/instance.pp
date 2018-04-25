@@ -1,21 +1,29 @@
 define redis::instance(
-                        $port                  = $name,
-                        $redis_instancename    = $name,
-                        $bind                  = '0.0.0.0',
-                        $timeout               = '0',
-                        $datadir               = "/var/lib/redis-${name}",
-                        $ensure                = 'running',
-                        $manage_service        = true,
-                        $manage_docker_service = true,
-                        $enable                = true,
-                        $redis_user            = $redis::params::default_redis_user,
-                        $redis_group           = $redis::params::default_redis_group,
-                        $unixsocket            = undef,
-                        $unixsocketperm        = '700',
-                        $listen_tcp            = true,
-                        $password              = undef,
-                        $daemonize             = true,
+                        $port                             = $name,
+                        $redis_instancename               = $name,
+                        $bind                             = '0.0.0.0',
+                        $timeout                          = '0',
+                        $datadir                          = "/var/lib/redis-${name}",
+                        $ensure                           = 'running',
+                        $manage_service                   = true,
+                        $manage_docker_service            = true,
+                        $enable                           = true,
+                        $redis_user                       = $redis::params::default_redis_user,
+                        $redis_group                      = $redis::params::default_redis_group,
+                        $unixsocket                       = undef,
+                        $unixsocketperm                   = '700',
+                        $listen_tcp                       = true,
+                        $password                         = undef,
+                        $daemonize                        = true,
+                        $sentinel                         = false,
+                        $sentinel_group_name              = "${name}cluster",
+                        $sentinel_quorum                  = '2',
+                        $sentinel_down_after_milliseconds = '5000',
+                        $sentinel_parallel_syncs          = '1',
+                        $sentinel_failover_timeout        = '10000',
                       ) {
+
+  include ::redis
 
   Exec {
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
@@ -40,10 +48,10 @@ define redis::instance(
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    require => File['/etc/redis'],
+    require => Class['::redis'],
     content => template("${module_name}/redisconf.erb"),
+    notify  => Service["redis-${redis_instancename}"],
   }
-  # notify  => Service["redis-${redis_instancename}"],
 
   if($daemonize)
   {
@@ -92,7 +100,7 @@ define redis::instance(
     {
       if($manage_service)
       {
-        service { "redis-${name}":
+        service { "redis-${redis_instancename}":
           ensure    => $ensure,
           enable    => $enable,
           subscribe => File["/etc/redis/redis-${redis_instancename}.conf"],

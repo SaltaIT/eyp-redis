@@ -1,0 +1,7 @@
+# Host and port we will listen for requests on
+bind <%= @bind %>
+port <%= @port %>
+
+daemonize yes
+
+pidfile /var/run/redis/redis-sentinel.pid
