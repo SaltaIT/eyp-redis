@@ -1,8 +1,4 @@
 class redis::sentinel::install inherits redis::sentinel {
-  if($redis::params::sentinel_bin==undef)
-  {
-    fail('sentinel not supported')
-  }
 
   if($redis::params::sentinel_package!=undef)
   {

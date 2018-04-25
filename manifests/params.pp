@@ -11,7 +11,6 @@ class redis::params {
       $servicename='redis'
       $os_flavor='RH'
       $package_name=[ 'redis' ]
-      $sentinel_bin='/usr/bin/redis-sentinel'
       $sentinel_package=undef
       $sentinel_servicename='redis-sentinel'
       $sentinel_config='/etc/redis-sentinel.conf'
@@ -38,7 +37,6 @@ class redis::params {
       $os_flavor='Debian'
       $package_name=[ 'redis-server', 'redis-tools' ]
       $redisserver_bin='/usr/bin/redis-server'
-      $sentinel_bin='/usr/bin/redis-sentinel'
       $sentinel_package = 'redis-sentinel'
       $sentinel_servicename='sentinel'
       $sentinel_config='/etc/redis/sentinel.conf'
