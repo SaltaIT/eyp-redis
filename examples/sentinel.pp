@@ -12,13 +12,3 @@ redis::instance { '1113':
 }
 
 redis::instance { '1114': }
-
-redis::instance { '1115':
-  sentinel => true,
-  sentinel_group_name => 'testcluster',
-}
-
-redis::instance { '1116':
-  sentinel => true,
-  sentinel_group_name => 'testcluster',
-}
