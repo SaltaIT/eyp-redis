@@ -8,7 +8,7 @@ when 'RedHat'
   $sentinel_servicename = 'redis-sentinel'
 
 when 'Debian'
-  $sentinel_servicename = 'sentinel'
+  $sentinel_servicename = 'redis-sentinel'
 
 else
   $examplevar = '-_-'
