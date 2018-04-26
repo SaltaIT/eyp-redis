@@ -40,7 +40,7 @@ class redis::params {
       $package_name=[ 'redis-server', 'redis-tools' ]
       $redisserver_bin='/usr/bin/redis-server'
       $sentinel_package = 'redis-sentinel'
-      $sentinel_servicename='sentinel'
+      $sentinel_servicename='redis-sentinel'
       $sentinel_config='/etc/redis/sentinel.conf'
 
 
