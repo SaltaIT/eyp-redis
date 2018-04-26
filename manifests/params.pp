@@ -14,6 +14,7 @@ class redis::params {
       $sentinel_package=undef
       $sentinel_servicename='redis-sentinel'
       $sentinel_config='/etc/redis-sentinel.conf'
+      $default_sentinel_dir = '/tmp'
 
       $sentinel_pidfile=undef
 
@@ -42,6 +43,7 @@ class redis::params {
       $sentinel_package = 'redis-sentinel'
       $sentinel_servicename='redis-sentinel'
       $sentinel_config='/etc/redis/sentinel.conf'
+      $default_sentinel_dir = '/var/lib/redis'
 
 
       case $::operatingsystem
