@@ -76,6 +76,20 @@ redis::instance { 'instance_B':
 }
 ```
 
+sentinel support:
+
+```puppet
+class { 'redis': }
+
+redis::instance { '1111':
+  sentinel => true,
+}
+
+redis::instance { '1112':
+  sentinel => true,
+}
+```
+
 ## Reference
 
 ### classes
@@ -88,6 +102,9 @@ redis::instance { 'instance_B':
 * **manage_docker_service**: = true,
 * **service_ensure**:        = 'stopped',
 * **service_enable**:        = false,
+
+#### redis::sentinel
+(...)
 
 ### defines
 
@@ -107,10 +124,12 @@ redis::instance { 'instance_B':
   * **manage_docker_service**: = true,
   * **enable**:                = true,
 
+#### redis::sentinel::instance
+(...)
+
 ## Limitations
 
 Tested on:
-* CentOS 5
 * CentOS 6
 * CentOS 7
 * Ubuntu 14.04
@@ -120,10 +139,6 @@ Tested on:
 
 We are pushing to have acceptance testing in place, so any new feature should
 have some test to check both presence and absence of any feature
-
-### TODO
-
-TODO list
 
 ### Contributing
 
