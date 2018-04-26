@@ -14,7 +14,7 @@ class redis::sentinel(
 
   Class['::redis'] ->
   class { '::redis::sentinel::install': } ->
-  class { '::redis::sentinel::config': } ~>
+  class { '::redis::sentinel::config': }  ~>
   class { '::redis::sentinel::service': } ->
   Class['::redis::sentinel']
 
