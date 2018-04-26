@@ -1,14 +1,14 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:		redis-<%= @name %>
+# Provides:		redis-<%= @redis_instancename %>
 # Required-Start:	$syslog $remote_fs
 # Required-Stop:	$syslog $remote_fs
 # Should-Start:		$local_fs
 # Should-Stop:		$local_fs
 # Default-Start:	2 3 4 5
 # Default-Stop:		0 1 6
-# Short-Description:	redis-<%= @name %> - Persistent key-value db
-# Description:		redis-<%= @name %> - Persistent key-value db
+# Short-Description:	redis-<%= @redis_instancename %> - Persistent key-value db
+# Description:		redis-<%= @redis_instancename %> - Persistent key-value db
 ### END INIT INFO
 
 # puppet managed file
@@ -16,13 +16,13 @@
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/redis-server
-DAEMON_ARGS=/etc/redis/redis-<%= @name %>.conf
+DAEMON_ARGS=/etc/redis/redis-<%= @redis_instancename %>.conf
 NAME=redis-server
-DISPLAYNAME=redis-<%= @name %>
-DESC=redis-<%= @name %>
+DISPLAYNAME=redis-<%= @redis_instancename %>
+DESC=redis-<%= @redis_instancename %>
 
 RUNDIR=/var/run/redis
-PIDFILE=$RUNDIR/redis-<%= @name %>.pid
+PIDFILE=$RUNDIR/redis-<%= @redis_instancename %>.pid
 
 REDISUSER=<%= @redis_user %>
 REDISGROUP=<%= @redis_group %>
