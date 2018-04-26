@@ -2,7 +2,7 @@
   "name": "eyp-redis",
   "version": "0.1.7",
   "author": "eyp",
-  "summary": "multi instance redis / sentinel support",
+  "summary": "multi instance redis with sentinel support",
   "license": "Apache-2.0",
   "source": "https://github.com/NTTCom-MS/eyp-redis",
   "project_page": "https://github.com/NTTCom-MS/eyp-redis",
