@@ -1,5 +1,6 @@
 define redis::sentinel::instance(
                                   $instance_name           = $name,
+                                  $redis_addr              = '127.0.0.1',
                                   $redis_port              = $name,
                                   $redis_password          = undef,
                                   $order                   = '42',
