@@ -1,4 +1,3 @@
 class { 'redis': }
 
-redis::instance { '4444':
-}
+redis::instance { '4444': }
