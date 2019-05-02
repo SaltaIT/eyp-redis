@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.8
+
+* Updated metadata for **eyp-systemd 0.2.0**
+
 ## 0.1.7
 
 * added sentinel support

@@ -1,6 +1,6 @@
 {
   "name": "eyp-redis",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "author": "eyp",
   "summary": "multi instance redis with sentinel support",
   "license": "Apache-2.0",
@@ -10,7 +10,7 @@
   "dependencies": [
     {"name":"puppetlabs/stdlib", "version_requirement":">= 1.0.0 < 9.9.9"},
     {"name":"puppetlabs/concat","version_requirement":">= 1.2.3 < 3.0.0"},
-    {"name":"eyp/systemd", "version_requirement":">= 0.1.7 < 0.2.0"},
+    {"name":"eyp/systemd", "version_requirement":">= 0.1.7 < 0.3.0"},
     {"name":"eyp/eyplib", "version_requirement":">= 0.1.0 < 0.2.0"}
   ],
   "operatingsystem_support": [
