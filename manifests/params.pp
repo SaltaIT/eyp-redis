@@ -57,7 +57,7 @@ class redis::params {
               $systemd=false
               $sentinel_pidfile=undef
             }
-            /^16.*$/:
+            /^1[68].*$/:
             {
               $systemd=true
               $sentinel_pidfile='/var/run/redis/redis-sentinel.pid'
@@ -65,7 +65,18 @@ class redis::params {
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
           }
         }
-        'Debian': { fail('Unsupported')  }
+        'Debian':
+        {
+          case $::operatingsystemrelease
+          {
+            /^10\..*$/:
+            {
+              $systemd=true
+              $sentinel_pidfile='/var/run/redis/redis-sentinel.pid'
+            }
+            default: { fail("Unsupported Debian version! - ${::operatingsystemrelease}")  } 
+          }
+        }
         default: { fail('Unsupported Debian flavour!')  }
       }
     }

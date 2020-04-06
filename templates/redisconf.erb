@@ -1,4 +1,10 @@
 # puppet managed file
+<% if defined?(@description) -%>
+  
+#
+# <%= @description %>
+#
+<% end -%>
 
 daemonize <%= scope.function_bool2yesno([@daemonize]) %>
 pidfile /var/run/redis-<%= @redis_instancename %>/redis.pid

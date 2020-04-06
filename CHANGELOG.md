@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.1.9
+
+* added instance description
+* added Debian 10 support
+
 ## 0.1.8
 
 * Updated metadata for **eyp-systemd 0.2.0**

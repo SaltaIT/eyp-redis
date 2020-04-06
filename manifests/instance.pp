@@ -1,6 +1,7 @@
 define redis::instance(
                         $port                             = $name,
                         $redis_instancename               = $name,
+                        $description                      = undef,
                         $bind                             = '0.0.0.0',
                         $timeout                          = '0',
                         $datadir                          = "/var/lib/redis-${name}",
