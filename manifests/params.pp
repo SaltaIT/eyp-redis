@@ -26,7 +26,7 @@ class redis::params {
           $systemd=false
           $redisserver_bin='/usr/sbin/redis-server'
         }
-        /^7.*$/:
+        /^[7-8].*$/:
         {
           $systemd=true
           $redisserver_bin='/usr/bin/redis-server'
@@ -58,6 +58,11 @@ class redis::params {
               $sentinel_pidfile=undef
             }
             /^1[68].*$/:
+            {
+              $systemd=true
+              $sentinel_pidfile='/var/run/redis/redis-sentinel.pid'
+            }
+            /^20.*$/:
             {
               $systemd=true
               $sentinel_pidfile='/var/run/redis/redis-sentinel.pid'

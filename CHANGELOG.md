@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.10
+
+* Ubuntu 20.04 and CentOS 8 support
+
 ## 0.1.9
 
 * added instance description
