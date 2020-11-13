@@ -1,6 +1,6 @@
 {
   "name": "eyp-redis",
-  "version": "0.1.10",
+  "version": "1.0.10",
   "author": "Jordi Prats",
   "summary": "multi instance redis with sentinel support",
   "license": "Apache-2.0",
