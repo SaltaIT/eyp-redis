@@ -1,6 +1,6 @@
 {
   "name": "eyp-redis",
-  "version": "0.1.10",
+  "version": "1.0.10",
   "author": "Jordi Prats",
   "summary": "multi instance redis with sentinel support",
   "license": "Apache-2.0",
@@ -46,7 +46,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 3.8.0"
+      "version_requirement": ">= 4.0.0"
     }
   ]
 }
